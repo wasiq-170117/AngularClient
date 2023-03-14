@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,8 +12,9 @@ export class UserserviceService {
 
   constructor(private http: HttpClient) { }
 
+  Url = environment.developmentUrl;
   createNewUser(data: any): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/userRoutes/createNew', data).
+    return this.http.post<any>(`${this.Url}/userRoutes/createNew`, data).
     pipe(
       catchError(error => {
         console.log('Error', error);
@@ -25,7 +27,7 @@ export class UserserviceService {
 
   GetAllUsers(): Observable<any> {
     
-    return this.http.get<any>('http://localhost:3000/userRoutes/users').
+    return this.http.get<any>(`${this.Url}/userRoutes/users`).
     pipe(
       catchError(error => {
         console.log('Error: ', error);
@@ -37,7 +39,7 @@ export class UserserviceService {
   }
 
   UpdateData(user: any, user_id: any): Observable<any> {
-    return this.http.patch<any>(`http://localhost:3000/userRoutes/users/${user_id}`, user).
+    return this.http.patch<any>(`${this.Url}/userRoutes/users/${user_id}`, user).
     pipe(
       catchError(error => {
         console.log('Error: ', error);
@@ -50,7 +52,7 @@ export class UserserviceService {
 
   Delete(id: any): Observable<any> {
     
-    return this.http.delete<any>(`http://localhost:3000/userRoutes/users/${id}`)
+    return this.http.delete<any>(`${this.Url}/userRoutes/users/${id}`)
     .pipe(
       catchError(error => {
         console.log('Error: ', error);
