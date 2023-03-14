@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // developmentUrl: "http://localhost:3000"
-  developmentUrl: "http://18.118.37.185"
+  developmentUrl: "http://localhost:3000"
+  //developmentUrl: "http://18.118.37.185"
 };
 
 /*
